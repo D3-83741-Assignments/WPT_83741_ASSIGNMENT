@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <center>
+        <table>
+            <tr>
+                <td>
+                    Num1
+                </td>
+                <td>
+                    <input type="text" id="num1"> 
+                     <!-- onchange="fetch() -->
+                </td>
+                <div></div>
+                <td>
+                    <div id="errorMessageX"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>Num2</td>
+                <td><input type="text" id="num2" ></td> 
+                <!-- onchange="fetch()" -->
+                <td><div id="errorMessageY"></div></td>
+                
+            </tr>
+            <tr>
+                <td>result</td>
+                <td><input id="resbox" type="text" readonly=" true" ></td>
+                <td><div id="result.div"></div></td>
+            </tr>
+        </table>
+    </center>
+    <center>
+        <table>
+            <tbody>
+                <tr>
+                    <td> <input type="Button" value="addition" id="add" onclick="add()"></td>
+                    <td> <input type="Button" value="Substraction" id ="sub" onclick="sub()"></td>
+                    <td> <input type="Button" value="Multiplication" id = "mul" onclick="mul()"></td>
+                    <td> <input type="Button" value="Division" id="div" onclick="div()"></td>
+                </tr>
+            </tbody>
+        </table>
+    </center>
+
+    <script>
+       
+        
+        
+        function add()
+        {
+        var refnum1=document.getElementById("num1")
+        var refnum2=document.getElementById("num2")
+        var refadd=document.getElementById("resbox")
+        var isnum1Number = false;
+        var isnum2Number = false;
+
+        var isnum1BoxEmpty = IsEmpty("num1", "errorMessageX", "num1 is required");
+        if (isnum1BoxEmpty == false) {
+          isnum1Number = IsItNumber("num1", "errorMessageX", "num1 should be number");
+        }
+
+        var isnum2BoxEmpty = IsEmpty("num2", "errorMessageY", "num2 is required");
+        if (isnum2BoxEmpty == false) {
+          isnum2Number = IsItNumber("num2", "errorMessageY", "num2 should be number");
+        }
+
+        if (isnum1Number == true && isnum2Number == true) {
+          //alert("Do addition now!");
+
+          var num1 = parseInt(refnum1.value);
+          var num2 = parseInt(refnum2.value);
+
+          var result = num1 + num2;
+          refadd.value = result;
+        } else {
+          refadd.value = "";
+        }
+    }
+    //         refresult.value = parseInt(refnum1.value)+ parseInt(refnum2.value) ; 
+    //     }
+        function sub()
+      {
+        var refnum1=document.getElementById("num1")
+        var refnum2=document.getElementById("num2")
+        var refsub=document.getElementById("resbox")
+        var isnum1Number = false;
+        var isnum2Number = false;
+
+        var isnum1BoxEmpty = IsEmpty("num1", "errorMessageX", "num1 is required");
+        if (isnum1BoxEmpty == false) {
+          isnum1Number = IsItNumber("num1", "errorMessageX", "num1 should be number");
+        }
+
+        var isnum2BoxEmpty = IsEmpty("num2", "errorMessageY", "num2 is required");
+        if (isnum2BoxEmpty == false) {
+          isnum2Number = IsItNumber("num2", "errorMessageY", "num2 should be number");
+        }
+
+        if (isnum1Number == true && isnum2Number == true) {
+         
+
+          var num1 = parseInt(refnum1.value);
+          var num2 = parseInt(refnum2.value);
+          var result = num1 -num2;
+          refsub.value = result;
+        } else {
+          refsub.value = "";
+
+      }
+          
+           
+        }
+        function mul()
+        {
+          var refnum1=document.getElementById("num1")
+        var refnum2=document.getElementById("num2")
+        var refmul=document.getElementById("resbox")
+        var isnum1Number = false;
+        var isnum2Number = false;
+
+        var isnum1BoxEmpty = IsEmpty("num1", "errorMessageX", "num1 is required");
+        if (isnum1BoxEmpty == false) {
+          isnum1Number = IsItNumber("num1", "errorMessageX", "num1 should be number");
+        }
+
+        var isnum2BoxEmpty = IsEmpty("num2", "errorMessageY", "num2 is required");
+        if (isnum2BoxEmpty == false) {
+          isnum2Number = IsItNumber("num2", "errorMessageY", "num2 should be number");
+        }
+
+        if (isnum1Number == true && isnum2Number == true) {
+          
+
+          var num1 = parseInt(refnum1.value);
+          var num2 = parseInt(refnum2.value);
+          var result = num1 * num2;
+          refmul.value = result;
+        } else {
+          refmul.value = "";
+        }
+      }
+        function div()
+        {
+          var refnum1=document.getElementById("num1")
+        var refnum2=document.getElementById("num2")
+        var refdiv=document.getElementById("resbox")
+        var isnum1Number = false;
+        var isnum2Number = false;
+
+        var isnum1BoxEmpty = IsEmpty("num1", "errorMessageX", "num1 is required");
+        if (isnum1BoxEmpty == false) {
+          isnum1Number = IsItNumber("num1", "errorMessageX", "num1 should be number");
+        }
+
+        var isnum2BoxEmpty = IsEmpty("num2", "errorMessageY", "num2 is required");
+        if (isnum2BoxEmpty == false) {
+          isnum2Number = IsItNumber("num2", "errorMessageY", "num2 should be number");
+        }
+
+        if (isnum1Number == true && isnum2Number == true) {
+          
+
+          var num1 = parseInt(refnum1.value);
+          var num2 = parseInt(refnum2.value);
+          var result = num1 /num2;
+          refdiv.value = result;
+        } else {
+          refadd.value = "";
+             
+        }
+      }
+        function IsItNumber(controlid, divid, errorMessage) {
+        var refToControl = document.getElementById(controlid);
+        var refToErrorControl = document.getElementById(divid);
+
+        var IsItNumber = false;
+
+        var isnum1ValueText = isNaN(refToControl.value);
+        if (isnum1ValueText == true) {
+          refToErrorControl.innerText = errorMessage;
+          IsItNumber = false;
+        } else {
+          refToErrorControl.innerText = "";
+          console.log(refToControl.value);
+          IsItNumber = true;
+        }
+
+        return IsItNumber;
+      }
+      function IsEmpty(controlid, errorcontrolid, errorMessage) {
+        var refToTxtBox = document.getElementById(controlid);
+        var refToDivForErrorMessage = document.getElementById(errorcontrolid);
+
+        var dataInTxtBox = refToTxtBox.value;
+
+        var isBoxEmpty = true;
+
+        if (dataInTxtBox != "") {
+          refToDivForErrorMessage.innerText = "";
+          console.log(dataInTxtBox);
+          isBoxEmpty = false;
+        } else {
+          refToDivForErrorMessage.innerText = errorMessage;
+          isBoxEmpty = true;
+        }
+
+        return isBoxEmpty;
+      }
+
+
+    </script>
+
+</body>
+
+</html>

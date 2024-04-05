@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="height: 200px; width: 469px;">
+        <img id="mycar"  src="car.jpeg" alt="" style="height: 50px; width: 100px; position: absolute; left: 0px; top: 5;">
+    </div>
+    <div style="height: 50px;
+         width: 300px; background-color: black; position: absolute; top: 50px; left: 0px;"></div>
+    <br><br><br><br><br><br><br><br><br>
+    <input type="button" value="keepmoving" onclick="start()"/>
+    <input type="button" value="Stop" onclick="stop() "/>
+
+    <table>
+        <tr>
+            <td> X axis </td>
+            <!-- <td style="border: 1px; border-color: black solid;width: 100px; height: 50px; "><div id="x"  > </div></td> -->
+            <td> <input type="text" id="x"/></td>
+        </tr>
+        <tr><td> Yaxis </td> <td><input type="text" id="y"/></td></tr>
+        
+    </table>
+    <script>
+        var leftval = 0;
+        var qno ;
+        var topval=5;
+        var qnos = new Array();
+        var xref = document.getElementById("x");
+        var yref = document.getElementById("y");
+        function start()
+        {
+            qno = setInterval(keepmoving,50);
+            qnos.push(qno);
+
+        }
+        function keepmoving()
+        {
+            var carref= document.getElementById("mycar");
+            if(leftval<300){
+                
+            carref.style.left=leftval+"px";
+            leftval=leftval+1;
+        }
+            if(leftval>=300){
+                
+                carref.style.top =topval+"px";
+                topval=topval+1; 
+            }
+            if(topval>100){
+                for (let i = 0; i < qnos.length; i++) 
+                {
+                   clearInterval(qnos[i]);  
+                }
+            }
+            xref.value=leftval;
+            yref.value=topval;
+
+        }
+        function stop()
+        {
+            for (let i = 0; i < qnos.length; i++) {
+                   clearInterval(qnos[i]);  
+                }
+        }    
+    </script>
+</body>
+
+</html>
